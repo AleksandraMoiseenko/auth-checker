@@ -1,8 +1,8 @@
 package ru.stm.auth.repository;
 
+import ru.stm.auth.repository.impl.RedisSuffixes;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.Map;
-import ru.stm.auth.repository.impl.RedisSuffixes;
 
 public interface RedisRepository {
 

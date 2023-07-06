@@ -1,11 +1,11 @@
 package ru.stm.auth.controller;
 
-import java.util.UUID;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import ru.stm.auth.repository.RedisRepository;
 import ru.stm.auth.repository.impl.RedisSuffixes;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
@@ -13,10 +13,9 @@ public class AuthController {
 
     private final RedisRepository redisRepository;
 
-    @GetMapping("/token")
-    public String getToken() {
-        var token = UUID.randomUUID().toString();
-        redisRepository.setString(token+ RedisSuffixes.token.getSuffix(), token, 7200);
-        return token;
+    @PostMapping("/token")
+    public String getToken(@RequestBody String token) {
+        System.out.println(token + RedisSuffixes.token.getSuffix());
+        return redisRepository.getString(token + RedisSuffixes.token.getSuffix());
     }
 }
