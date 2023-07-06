@@ -15,7 +15,6 @@ public class RedisConfiguration {
     @Primary
     @Bean("lettuceConnectionFactory")
     public RedisConnectionFactory lettuceConnectionFactory(RedisProperties properties) {
-
         var clusterConfiguration = new RedisClusterConfiguration(properties.getNodes());
         clusterConfiguration.setMaxRedirects(2);
 
